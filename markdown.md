@@ -69,8 +69,8 @@
 ## Emphasis
 
 ```md
-*italic* or _italic_  
-**bold** or __bold__ 
+_italic_ or _italic_  
+**bold** or **bold**
 **_bold & italic_** **_bold & italic_** **_bold & italic_**
 ~~strikethrough~~
 ```
@@ -106,6 +106,17 @@ This is newline.
 - Item 3
 ```
 
+<details>
+  <summary> Output : </summary>
+
+> **Unordered**
+>
+> - Item 1
+> - Item 2
+> - Item 3
+
+</details>
+
 **Ordered**
 
 ```md
@@ -122,25 +133,8 @@ or
 1. Third
 ```
 
-**Nested**
-
-```md
-1. First
-1. Second
-1. Third
-   - First
-   - Second
-   - Third
-```
-
 <details>
   <summary> Output : </summary>
-
-> **Unordered**
->
-> - Item 1
-> - Item 2
-> - Item 3
 
 > **Ordered**
 >
@@ -153,6 +147,22 @@ or
 > 1. First
 > 1. Second
 > 1. Third
+
+</details>
+
+**Nested**
+
+```md
+1. First
+2. Second
+3. Third
+   - First
+   - Second
+   - Third
+```
+
+<details>
+  <summary> Output : </summary>
 
 > **Nested**
 >
@@ -221,18 +231,38 @@ Reference can be used in anywhere in the doc like this :
 ## Blockquotes
 
 ```md
-> This is 
-> a 
+> This is
+>
+> a
+>
 > blockquote
 ```
+
+Output:
+
+> This is
+>
+> a
+>
+> blockquote
 
 Nested blockquote
 
 ```md
-> This is 
+> This is
+>
 > an exapmle of
+>
 > > Nested blockquote
 ```
+
+Output:
+
+> This is
+>
+> an exapmle of
+>
+> > Nested blockquote
 
 ---
 
@@ -282,7 +312,9 @@ Add \" \ \" before any special charecter to escape
 ## </details>
 
 ## Tables
+
 ( By default table data are left aligned. )
+
 ```md
 | Column A | Column B |
 | -------- | -------- |
@@ -319,12 +351,10 @@ Here’s a footnote.[^1]
 
 [^1]: This is the footnote text.
 ```
-<details>
-  <summary>Output: </summary>
+
+Output:
 
 > Here’s a footnote.[^1]
-
-</details>
 
 ---
 
@@ -333,12 +363,10 @@ Here’s a footnote.[^1]
 ```md
 :smile: :rocket: :fire:
 ```
-<details>
-  <summary>Output: </summary>
+
+Output:
 
 > :smile: :rocket: :fire:
-
-</details>
 
 Full Emoji list → [GitHub Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet)
 
@@ -389,9 +417,7 @@ Term
 >
 > <kbd>Ctrl</kbd> + <kbd>C</kbd> → keyboard keys
 >
-> <sup> Superscript</sup>
->
-> <sub>Subscript</sub
+> <sup> Superscript</sup> / <sub>Subscript</sub
 
 </details>
 
@@ -406,12 +432,9 @@ They are just images (from [shields.io](https://shields.io/) or similar) wrapped
 ![License](https://img.shields.io/badge/License-MIT-green)
 ```
 
-<details>
-  <summary>Output: </summary>
+Output:
 
 ![License](https://img.shields.io/badge/License-MIT-green)
-
-</details>
 
 ---
 
@@ -423,9 +446,6 @@ Mostly used to share important tips.
 > :bulb: **Tip:** Here's an important tip ....
 ```
 
-<details>
-  <summary>Output: </summary>
+Output:
 
 > :bulb: **Tip:** Here's an important tip ....
-
-</details>
