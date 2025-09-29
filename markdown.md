@@ -5,30 +5,29 @@
 > :bulb: Also **[here](https://www.youtube.com/watch?v=ftOBvusMHjQ)** is a youtube crash course on Markdown by **[codeSTACKr](https://www.youtube.com/@codeSTACKr)**
 
 # 📑 Table of Content:
-  - [Headings](#headings)
-  - [Emphasis](#emphasis)
-  - [New line](#new-line)
-  - [Lists](#lists)
-  - [Links](#links)
-  - [References](#references)
-  - [Images](#images)
-  - [Images with links](#images-with-links)
-  - [Blockquotes](#blockquotes)
-  - [Escape Special Charecter](#escape-special-charecter)
-  - [](#)
-  - [Tables](#tables)
-  - [Horizontal Rule](#horizontal-rule)
-  - [GitHub Flavored Markdown(GFM)](#github-flavored-markdowngfm)
-    - [Task lists:](#task-lists)
-    - [Footnotes](#footnotes)
-    - [Emojis](#emojis)
-    - [Collapsible Dropdown](#collapsible-dropdown)
-    - [Definition Lists](#definition-lists)
-    - [Aligned tables](#aligned-tables)
-    - [Custom html](#custom-html)
-  - [Badges](#badges)
-  - [Callouts](#callouts)
 
+- [Headings](#headings)
+- [Emphasis](#emphasis)
+- [New line](#new-line)
+- [Lists](#lists)
+- [Links](#links)
+- [References](#references)
+- [Images](#images)
+- [Images with links](#images-with-links)
+- [Blockquotes](#blockquotes)
+- [Escape Special Charecter](#escape-special-charecter)
+- [Tables](#tables)
+- [Horizontal Rule](#horizontal-rule)
+- [GitHub Flavored Markdown(GFM)](#github-flavored-markdowngfm)
+  - [Task lists:](#task-lists)
+  - [Footnotes](#footnotes)
+  - [Emojis](#emojis)
+  - [Collapsible Dropdown](#collapsible-dropdown)
+  - [Definition Lists](#definition-lists)
+  - [Aligned tables](#aligned-tables)
+  - [Custom html](#custom-html)
+- [Badges](#badges)
+- [Callouts](#callouts)
 
 ---
 
@@ -70,8 +69,8 @@
 ## Emphasis
 
 ```md
-*italic* or _italic_  
-**bold** or __bold__   
+_italic_ or _italic_  
+**bold** or **bold**  
 **_bold & italic_** **_bold & italic_** **_bold & italic_**
 ~~strikethrough~~
 ```
@@ -227,8 +226,6 @@ Reference can be used in anywhere in the doc like this :
 > This is blockquote
 ```
 
-`````
-
 Nested blockquote
 
 ```md
@@ -253,7 +250,7 @@ Use `backticks` for inline code
 ```language
 console.log("Hello, Markdown!");
 ```
-`````
+````
 
 ---
 
@@ -303,7 +300,7 @@ Add \ before any special charecter to escape
 
 ---
 
-## GitHub Flavored Markdown(GFM)
+## GitHub Flavored Markdown (GFM)
 
 ### Task lists:
 
@@ -311,6 +308,7 @@ Add \ before any special charecter to escape
 - [ ] Task to do
 - [x] Completed task
 ```
+
 ---
 
 ### Footnotes
@@ -320,6 +318,7 @@ Here’s a footnote.[^1]
 
 [^1]: This is the footnote text.
 ```
+
 ---
 
 ### Emojis
@@ -393,6 +392,7 @@ They are just images (from [shields.io](https://shields.io/) or similar) wrapped
 ```md
 ![License](https://img.shields.io/badge/License-MIT-green)
 ```
+
 <details>
   <summary>Output: </summary>
 
