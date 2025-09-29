@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./Assests/banner.png" alt="cheat-docs banner" width="100%" hight="100px">
+</p>
+
 # Dev Cheatsheets 📚✨
 
 Quick-reference cheatsheets for popular developer tools and programming languages.
@@ -9,12 +13,12 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 
 ## 📑 Index
 
-- 📝 [Markdown Cheatsheet](cheatsheets/markdown.md)
-- 🌱 [Git Cheatsheet](cheatsheets/git.md)
-- 🌐 [HTML Cheatsheet](cheatsheets/html.md)
-- 🎨 [CSS Cheatsheet](cheatsheets/css.md)
-- ⚡ [JavaScript Cheatsheet](cheatsheets/javascript.md)
-- 🖥️ [Linux Cheatsheet](cheatsheets/linux.md)
+- 📝 [Markdown Cheatsheet](markdown.md)
+- 🌱 [Git Cheatsheet](git.md)
+- 🌐 [HTML Cheatsheet](html.md)
+- 🎨 [CSS Cheatsheet](css.md)
+- ⚡ [JavaScript Cheatsheet](javascript.md)
+- 🖥️ [Linux Cheatsheet](linux.md)
 
 ---
 
