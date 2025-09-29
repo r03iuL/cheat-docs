@@ -69,8 +69,8 @@
 ## Emphasis
 
 ```md
-_italic_ or _italic_  
-**bold** or **bold**  
+*italic* or _italic_  
+**bold** or __bold__ 
 **_bold & italic_** **_bold & italic_** **_bold & italic_**
 ~~strikethrough~~
 ```
@@ -98,7 +98,7 @@ This is newline.
 
 ## Lists
 
-**Unordered**
+**Un Ordered**
 
 ```md
 - Item 1
@@ -221,16 +221,16 @@ Reference can be used in anywhere in the doc like this :
 ## Blockquotes
 
 ```md
-> This is a blockquote
->
-> This is blockquote
+> This is 
+> a 
+> blockquote
 ```
 
 Nested blockquote
 
 ```md
-> This is a blockquote
->
+> This is 
+> an exapmle of
 > > Nested blockquote
 ```
 
@@ -256,7 +256,7 @@ console.log("Hello, Markdown!");
 
 ## Escape Special Charecter
 
-Add \ before any special charecter to escape
+Add \" \ \" before any special charecter to escape
 
 ```md
     \****
@@ -282,7 +282,7 @@ Add \ before any special charecter to escape
 ## </details>
 
 ## Tables
-
+( By default table data are left aligned. )
 ```md
 | Column A | Column B |
 | -------- | -------- |
@@ -306,6 +306,7 @@ Add \ before any special charecter to escape
 
 ```md
 - [ ] Task to do
+
 - [x] Completed task
 ```
 
@@ -318,6 +319,12 @@ Here’s a footnote.[^1]
 
 [^1]: This is the footnote text.
 ```
+<details>
+  <summary>Output: </summary>
+
+> Here’s a footnote.[^1]
+
+</details>
 
 ---
 
@@ -326,8 +333,14 @@ Here’s a footnote.[^1]
 ```md
 :smile: :rocket: :fire:
 ```
+<details>
+  <summary>Output: </summary>
 
-(Full list → [GitHub Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet))
+> :smile: :rocket: :fire:
+
+</details>
+
+Full Emoji list → [GitHub Emoji Cheat Sheet](https://github.com/ikatyang/emoji-cheat-sheet)
 
 ### Collapsible Dropdown
 
@@ -403,6 +416,8 @@ They are just images (from [shields.io](https://shields.io/) or similar) wrapped
 ---
 
 ## Callouts
+
+Mostly used to share important tips.
 
 ```md
 > :bulb: **Tip:** Here's an important tip ....
