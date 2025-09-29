@@ -2,7 +2,7 @@
   <img src="./Assests/banner.png" alt="cheat-docs banner" width="100%" hight="100px">
 </p>
 
-# Dev Cheatsheets 📚✨
+<h1 align="center">📚 Cheat-docs ✨</h1>
 
 Quick-reference cheatsheets for popular developer tools and programming languages.
 Designed as a personal knowledge base, but shared openly for anyone who wants a fast, reliable way to refresh core concepts.
