@@ -5,6 +5,7 @@
 > :rocket: For study : **[MDN HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)** , **[W3School](https://www.w3schools.com/html/)**
 
 ## 📑 Table of Contents
+
 - [1. Basics](#1-basics)
   - [Boilerplate](#boilerplate)
   - [CSS](#css)
@@ -77,7 +78,6 @@
 - [11. Accessibility](#11-accessibility)
 - [12. Best Practices](#12-best-practices)
 
-
 ## 1. Basics
 
 ### Boilerplate
@@ -115,12 +115,12 @@ Applied directly inside an element using the `style` attribute.
 ⚠️ Good for **quick testing only**; not recommended for maintainable projects.
 
 ```html
-<p style="color: red; font-size: 18px;">This is red text</p>
+<p style="color: green; font-size: 18px;">This is green text</p>
 ```
 
 **Output:**
 
-<p style="color: red; font-size: 18px;">This is red text</p>
+<p style="color: green; font-size: 18px;">This is green text</p>
 
 ---
 
@@ -209,9 +209,6 @@ Written directly in element attributes (e.g., `onclick`).
 <button onclick="alert('Hello!')">Click Me</button>
 ```
 
-**Output:**  
-<button onclick="alert('Hello!')">Click Me</button>
-
 ---
 
 #### 2. Internal JavaScript
@@ -235,10 +232,6 @@ Good for **quick experiments** or small projects.
   </body>
 </html>
 ```
-
-**Output:**
-
-<h1 style="color: blue;">Hello</h1>
 
 ---
 
@@ -266,10 +259,6 @@ Best for modular, reusable, and maintainable projects.
 ```js
 document.querySelector("h1").style.color = "green";
 ```
-
-**Output:**
-
-<h1 style="color: green;">Hello</h1>
 
 ---
 
@@ -328,8 +317,6 @@ HTML comments are ignored by the browser. Useful for notes, TODOs, or temporaril
 ## 2. Text & Content
 
 HTML provides a variety of tags to structure text content and inline elements. Use semantic tags where possible for better readability, SEO, and accessibility.
-
----
 
 ### Headings `<h1>–<h6>`
 
@@ -642,8 +629,6 @@ Used for key–value pairs (terms and descriptions).
 > - `<dt>` → Term being defined.
 > - `<dd>` → Description/definition of term.
 
----
-
 ## 4. Links & Navigation
 
 ### Anchor `<a>`
@@ -678,6 +663,8 @@ Used for hyperlinks, anchors, downloads, and navigation.
 > - `title="tooltip text"` → Extra info shown on hover.
 > - `type="mime/type"` → Hints media type (e.g., `application/pdf`).
 
+---
+
 ### Link `<link>`
 
 Defines relationships between the current document and external resources (commonly stylesheets, icons, preloads).
@@ -711,13 +698,9 @@ Defines relationships between the current document and external resources (commo
 >   - `anonymous` → Default, no credentials.
 >   - `use-credentials` → Send cookies/credentials.
 
----
-
 ## 5. Media
 
 Practical patterns for images, figures, audio/video, and embeds. Prefer **semantic tags**, **descriptive `alt`**, and **responsive sizing**.
-
----
 
 ### Images `<img>`
 
@@ -736,7 +719,8 @@ decoding="async"
 />
 ```
 
-> [!NOTE] > **Common `<img>` attributes & values**
+> [!NOTE]
+> **Common `<img>` attributes & values :**
 >
 > - `src="path.jpg"` → Image URL.
 > - `alt="..."` → Text alternative (leave **empty** `alt=""` only for decorative images).
@@ -758,14 +742,17 @@ decoding="async"
     /images/card-1200.jpg 1200w
   "
   sizes="(max-width: 600px) 90vw, 600px"
-  <!-- layout width per media query -->
-
+  <!--
   layout
-  hint
+  width
+  per
+  media
+  query
   --
 />
-alt="Product card on a dark background" width="800" height="600" loading="lazy"
-/>
+
+layout hint -- /> alt="Product card on a dark background" width="800"
+height="600" loading="lazy" />
 ```
 
 > [!NOTE]
@@ -843,7 +830,8 @@ img {
 </audio>
 ```
 
-> [!NOTE] > **Common `<audio>` attributes**
+> [!NOTE]
+> **Common `<audio>` attributes:**
 >
 > - `controls` → Built-in player UI.
 > - `autoplay` → Start automatically (must usually be `muted` to work on mobile).
@@ -875,7 +863,8 @@ img {
 </video>
 ```
 
-> [!NOTE] > **Common `<video>` attributes**
+> [!NOTE]
+> **Common `<video>` attributes**
 >
 > - `controls`, `autoplay` (often requires `muted`), `muted`, `loop`, `playsinline`.
 > - `poster="cover.jpg"` → Static image before playing.
@@ -919,8 +908,7 @@ audio {
 >
 ```
 
-> [!NOTE]
-> **Security & performance for `<iframe>` :**
+> [!NOTE] > **Security & performance for `<iframe>` :**
 >
 > - `loading="lazy"` reduces initial load.
 > - `sandbox="..."` restricts capabilities; add only what you need (`allow-forms`, `allow-scripts`, `allow-same-origin`, etc.).
@@ -1566,7 +1554,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - `<address>` is for **contact info of the nearest article/author/site**, not arbitrary addresses.
 > - `<time datetime="...">` improves machine-readability for events, articles, and structured data.
 
-
 <details>
   <summary><strong>Preview: Semantic Landmarks</strong></summary>
 
@@ -1607,14 +1594,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - Keyboard accessible by default.
 > - Use `open` attribute to render expanded initially: `<details open>…</details>`.
 
-<details>
-  <summary><strong>Preview: Details</strong></summary>
-  <details>
-    <summary>Click to expand FAQ</summary>
-    <p>This is the hidden answer that appears when expanded.</p>
-  </details>
-</details>
-
 ---
 
 ### `<dialog>` (Native modal)
@@ -1645,11 +1624,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - Provide an **accessible title** via `aria-labelledby` or a heading inside the dialog.
 > - Always offer a **Close** button and support **Esc** to close.
 
-<details>
-  <summary><strong>Preview: Dialog (static)</strong></summary>
-  <dialog open><p>This dialog is open for preview only.</p></dialog>
-</details>
-
 ---
 
 ### `<progress>` (Task progress)
@@ -1664,11 +1638,9 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - `value` and `max` determine the bar fill (0..max).
 > - When `value` is **missing**, progress is **indeterminate** (spinner-like).
 
-<details>
-  <summary><strong>Preview: Progress</strong></summary>
-  <label for="file">File upload:</label>
-  <progress id="file" value="70" max="100">70%</progress>
-</details>
+**OUTPUT:**
+<label for="file">File upload:</label>
+<progress id="file" value="70" max="100">70%</progress>
 
 ---
 
@@ -1686,11 +1658,11 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - Use for known-range values (scores, battery).
 > - `low`, `high`, `optimum` help user agents choose coloring/semantics.
 
-<details>
-  <summary><strong>Preview: Meter</strong></summary>
-  <label for="disk">Disk usage:</label>
-  <meter id="disk" min="0" max="1" low="0.3" high="0.8" optimum="0.2" value="0.6">60%</meter>
-</details>
+**OUTPUT:**
+<label for="disk">Disk usage:</label>
+<meter id="disk" min="0" max="1" low="0.3" high="0.8" optimum="0.2" value="0.6">
+60%
+</meter>
 
 ---
 
@@ -1768,8 +1740,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 Meta tags provide **metadata** about a page (encoding, viewport, SEO, social sharing, performance).  
 They go inside the `<head>` and never appear in the visual content.
 
----
-
 ### Essential Meta Tags
 
 ```html
@@ -1797,18 +1767,18 @@ They go inside the `<head>` and never appear in the visual content.
 <link rel="canonical" href="https://example.com/current-page" />
 ```
 
-<details>
-  <summary><strong>Preview: Head with Essentials</strong></summary>
+Head with Essential tags
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Concise page summary goes here." />
-    <meta name="author" content="John Doe" />
-    <link rel="icon" href="/favicon.ico" />
-    <title>Sample Page</title>
-  </head>
-</details>
+```html
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Concise page summary goes here." />
+  <meta name="author" content="John Doe" />
+  <link rel="icon" href="/favicon.ico" />
+  <title>Sample Page</title>
+</head>
+```
 
 ---
 
@@ -1837,7 +1807,8 @@ They go inside the `<head>` and never appear in the visual content.
 ```
 
 > [!NOTE]
-> - Use `summary_large_image` in `twitter:card` for bigger previews.  
+>
+> - Use `summary_large_image` in `twitter:card` for bigger previews.
 > - Twitter falls back to Open Graph if specific tags are missing.
 
 ---
@@ -1854,7 +1825,13 @@ They go inside the `<head>` and never appear in the visual content.
 <meta name="theme-color" content="#0f172a" />
 
 <!-- Preload fonts or scripts (performance) -->
-<link rel="preload" href="/fonts/myfont.woff2" as="font" type="font/woff2" crossorigin />
+<link
+  rel="preload"
+  href="/fonts/myfont.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
 
 <!-- Preconnect for faster DNS/TLS handshake -->
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1867,7 +1844,10 @@ They go inside the `<head>` and never appear in the visual content.
 ```html
 <!-- Apple mobile web app -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black-translucent"
+/>
 
 <!-- Progressive Web App manifest -->
 <link rel="manifest" href="/site.webmanifest" />
@@ -1882,22 +1862,21 @@ They go inside the `<head>` and never appear in the visual content.
 > [!NOTE]  
 > ✅ **Meta Quick Reference Table**
 
-| Tag / Attribute | Purpose | Common Values |
-|-----------------|---------|---------------|
-| `<meta charset>` | Character encoding | `"utf-8"` |
-| `<meta name="viewport">` | Mobile scaling | `width=device-width, initial-scale=1` |
-| `<meta name="description">` | SEO snippet | Plain text, ≤ 155 chars |
-| `<meta name="robots">` | Search engine indexing | `index, follow` / `noindex, nofollow` |
-| `<meta property="og:*">` | Social preview (Open Graph) | `title`, `description`, `image`, `url` |
-| `<meta name="twitter:*">` | Twitter-specific preview | `card`, `title`, `description`, `image` |
-| `<meta name="theme-color">` | Browser UI theme color | HEX code (e.g., `#2563eb`) |
-| `<link rel="canonical">` | Preferred page URL | Full URL |
-| `<link rel="manifest">` | PWA manifest | Path to JSON file |
+| Tag / Attribute             | Purpose                     | Common Values                           |
+| --------------------------- | --------------------------- | --------------------------------------- |
+| `<meta charset>`            | Character encoding          | `"utf-8"`                               |
+| `<meta name="viewport">`    | Mobile scaling              | `width=device-width, initial-scale=1`   |
+| `<meta name="description">` | SEO snippet                 | Plain text, ≤ 155 chars                 |
+| `<meta name="robots">`      | Search engine indexing      | `index, follow` / `noindex, nofollow`   |
+| `<meta property="og:*">`    | Social preview (Open Graph) | `title`, `description`, `image`, `url`  |
+| `<meta name="twitter:*">`   | Twitter-specific preview    | `card`, `title`, `description`, `image` |
+| `<meta name="theme-color">` | Browser UI theme color      | HEX code (e.g., `#2563eb`)              |
+| `<link rel="canonical">`    | Preferred page URL          | Full URL                                |
+| `<link rel="manifest">`     | PWA manifest                | Path to JSON file                       |
 
-> - Always include `charset`, `viewport`, and `description`.  
-> - Use Open Graph + Twitter tags for **rich social sharing**.  
-> - Minimize `<meta keywords>`—deprecated and ignored by most engines.  
-
+> - Always include `charset`, `viewport`, and `description`.
+> - Use Open Graph + Twitter tags for **rich social sharing**.
+> - Minimize `<meta keywords>`—deprecated and ignored by most engines.
 
 ## 11. Accessibility
 
@@ -1963,17 +1942,6 @@ Build for **keyboard**, **screen readers**, and **color contrast**. Prefer **nat
 }
 ```
 
-<details>
-  <summary><strong>Preview: Accessibility Snippets</strong></summary>
-  <p><img src="dog.jpg" alt="A golden retriever puppy" style="max-width:100%;height:auto"/></p>
-  <p>
-    <label for="email-demo">Email</label><br/>
-    <input id="email-demo" type="email" placeholder="name@example.com" />
-  </p>
-  <nav aria-label="Main navigation">
-    <a href="/">Home</a> · <a href="/about">About</a>
-  </nav>
-</details>
 
 > [!NOTE]
 >
@@ -2023,14 +1991,3 @@ Build for **keyboard**, **screen readers**, and **color contrast**. Prefer **nat
   <title>Descriptive Title</title>
 </head>
 ```
-
-<details>
-  <summary><strong>Preview: Semantic vs Non-semantic</strong></summary>
-  <p>See code examples above. Semantic landmarks aid SEO, screen readers, and maintainability.</p>
-</details>
-
-> [!NOTE]
->
-> - **Table spanning** (e.g., `colspan`/`rowspan`) is covered in the **Tables** section; keep usage minimal for readability.
-> - Run automated checks (e.g., Lighthouse, axe) to catch common accessibility and performance issues.
-> - Keep bundles lean; prefer **responsive images** (`srcset/sizes`) and **lazy-loading** for media.
