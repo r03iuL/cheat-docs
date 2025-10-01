@@ -1,12 +1,13 @@
 <h1 align="Center"> 🧱 HTML Cheatsheet </h1>
 
-> :bulb: This is a quick reference for HTML elements, attributes, and common patterns. **Official Docs : [WHATWG HTML Standard](https://html.spec.whatwg.org/)**
+> :bulb: This is a quick reference for HTML elements, attributes, and common patterns.
 
-> :rocket: For study : **[MDN HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)** , **[W3School](https://www.w3schools.com/html/)**
+> :book: Official Docs : **[WHATWG HTML Standard](https://html.spec.whatwg.org/)**
+
+> :rocket: For study : **[MDN HTML Reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)** , **[W3Schools](https://www.w3schools.com/html/)**
 
 ## 📑 Table of Contents
 
-- [📑 Table of Contents](#-table-of-contents)
 - [1. Basics](#1-basics)
   - [Boilerplate](#boilerplate)
   - [CSS](#css)
@@ -117,7 +118,7 @@ A minimal, valid **HTML5 page structure** with semantic sections.
 
 There are 4 main ways to apply CSS styles to HTML:
 
-#### 1. Inline CSS
+#### i. Inline CSS
 
 Applied directly inside an element using the `style` attribute.  
 ⚠️ Good for **quick testing only**; not recommended for maintainable projects.
@@ -132,7 +133,7 @@ Applied directly inside an element using the `style` attribute.
 
 ---
 
-#### 2. Internal CSS
+#### ii. Internal CSS
 
 Written inside a `<style>` block in the `<head>`.  
 Useful for **small projects** or **single-page demos**.
@@ -154,7 +155,7 @@ Useful for **small projects** or **single-page demos**.
 
 ---
 
-#### 3. External CSS (✅ Best Practice)
+#### iii. External CSS (✅ Best Practice)
 
 Linked as a separate `.css` file using `<link>` in the `<head>`.  
 Most common in real-world projects (modular, maintainable, cacheable).
@@ -176,7 +177,7 @@ p {
 
 ---
 
-#### 4. @import (Inside CSS file)
+#### iv. @import (Inside CSS file)
 
 Imports another CSS file inside an existing stylesheet.  
 ⚠️ Loads **slower** than `<link>`; use only if necessary.
@@ -208,7 +209,7 @@ body {
 
 There are 4 main ways to use JavaScript in HTML:
 
-#### 1. Inline JavaScript
+#### i. Inline JavaScript
 
 Written directly in element attributes (e.g., `onclick`).  
 ⚠️ Not recommended (mixes content and logic).
@@ -219,7 +220,7 @@ Written directly in element attributes (e.g., `onclick`).
 
 ---
 
-#### 2. Internal JavaScript
+#### ii. Internal JavaScript
 
 Written inside a `<script>` tag in the HTML file.  
 Good for **quick experiments** or small projects.
@@ -243,7 +244,7 @@ Good for **quick experiments** or small projects.
 
 ---
 
-#### 3. External JavaScript (✅ Best Practice)
+#### iii. External JavaScript (✅ Best Practice)
 
 Keep JavaScript in a separate `.js` file and link it with `<script src="">`.  
 Best for modular, reusable, and maintainable projects.
@@ -270,7 +271,7 @@ document.querySelector("h1").style.color = "green";
 
 ---
 
-#### 4. Modern ES Modules
+#### iv. Modern ES Modules
 
 Use `type="module"` for cleaner code organization with imports/exports.
 

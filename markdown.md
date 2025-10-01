@@ -1,8 +1,10 @@
 <h1 align="Center"> 📝 Markdown Cheatsheet </h1>
 
-> :bulb: This is a quick reference for Markdown syntax. Full docs: [Markdown Guide](https://www.markdownguide.org/ "markdownguides.org")
+> :bulb: This is a quick reference for Markdown syntax.
 
-> :bulb: Also **[here](https://www.youtube.com/watch?v=ftOBvusMHjQ)** is a youtube crash course on Markdown by **[codeSTACKr](https://www.youtube.com/@codeSTACKr)**
+> :book: Official Docs: **[Markdown Guide](https://www.markdownguide.org/ "markdownguides.org")**
+
+> :rocket: Also **[here](https://www.youtube.com/watch?v=ftOBvusMHjQ)** is a youtube crash course on Markdown by **[codeSTACKr](https://www.youtube.com/@codeSTACKr)**
 
 # 📑 Table of Content:
 
