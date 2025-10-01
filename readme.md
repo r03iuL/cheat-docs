@@ -14,8 +14,9 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 ## 📑 Index
 
 - 📝 [Markdown Cheatsheet](markdown.md)
+- 🌱 [Git Cheatsheet](git.md)
 - 🌐 [HTML Cheatsheet](html.md)
-<!-- - 🌱 [Git Cheatsheet](git.md)
+<!-- - 
 - 🎨 [CSS Cheatsheet](css.md)
 - ⚡ [JavaScript Cheatsheet](javascript.md)
 - 🖥️ [Linux Cheatsheet](linux.md) -->
@@ -32,7 +33,7 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 ## 🚀 Roadmap
 - [ ] Add more topics
   - [x] Markdown 
-  - [ ] Git
+  - [X] Git
   - [X] Html 
   - [ ] CSS
   - [ ] JavScript
