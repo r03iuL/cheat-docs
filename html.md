@@ -6,6 +6,7 @@
 
 ## 📑 Table of Contents
 
+- [📑 Table of Contents](#-table-of-contents)
 - [1. Basics](#1-basics)
   - [Boilerplate](#boilerplate)
   - [CSS](#css)
@@ -75,7 +76,14 @@
   - [Twitter Cards](#twitter-cards)
   - [Performance \& Control](#performance--control)
   - [Social \& App Extras](#social--app-extras)
+  - [Meta Quick Reference Table](#meta-quick-reference-table)
 - [11. Accessibility](#11-accessibility)
+  - [Keyboard Accessibility](#keyboard-accessibility)
+  - [Screen Readers](#screen-readers)
+  - [Color Contrast](#color-contrast)
+  - [ARIA (Accessible Rich Internet Applications)](#aria-accessible-rich-internet-applications)
+  - [Language](#language)
+  - [Skip Links \& Focus](#skip-links--focus)
 - [12. Best Practices](#12-best-practices)
 
 ## 1. Basics
@@ -719,8 +727,7 @@ decoding="async"
 />
 ```
 
-> [!NOTE]
-> **Common `<img>` attributes & values :**
+> [!NOTE] > **Common `<img>` attributes & values :**
 >
 > - `src="path.jpg"` → Image URL.
 > - `alt="..."` → Text alternative (leave **empty** `alt=""` only for decorative images).
@@ -742,13 +749,10 @@ decoding="async"
     /images/card-1200.jpg 1200w
   "
   sizes="(max-width: 600px) 90vw, 600px"
-  <!--
-  layout
-  width
-  per
-  media
-  query
-  --
+  alt="Product card on a dark background"
+  width="800"
+  height="600"
+  loading="lazy"
 />
 
 layout hint -- /> alt="Product card on a dark background" width="800"
@@ -830,8 +834,7 @@ img {
 </audio>
 ```
 
-> [!NOTE]
-> **Common `<audio>` attributes:**
+> [!NOTE] > **Common `<audio>` attributes:**
 >
 > - `controls` → Built-in player UI.
 > - `autoplay` → Start automatically (must usually be `muted` to work on mobile).
@@ -863,8 +866,7 @@ img {
 </video>
 ```
 
-> [!NOTE]
-> **Common `<video>` attributes**
+> [!NOTE] > **Common `<video>` attributes**
 >
 > - `controls`, `autoplay` (often requires `muted`), `muted`, `loop`, `playsinline`.
 > - `poster="cover.jpg"` → Static image before playing.
@@ -890,25 +892,24 @@ audio {
 
 ### Iframe `<iframe>`
 
+````html
 ```html
+<!-- Defer offscreen iframes; provide an accessible title -->
 <iframe
   src="https://www.youtube.com/embed/dQw4w9WgXcQ"
   title="YouTube video player"
-  <!--
-  accessible
-  title
-  --
->
-  width="560" height="315" loading="lazy"
-  <!-- defer offscreen iframes -->
-  referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer;
-  autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;
-  web-share" allowfullscreen sandbox="allow-scripts allow-same-origin
-  allow-presentation" ></iframe
->
-```
+  width="560"
+  height="315"
+  loading="lazy"
+  referrerpolicy="strict-origin-when-cross-origin"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+  sandbox="allow-scripts allow-same-origin allow-presentation"
+></iframe>
+````
 
-> [!NOTE] > **Security & performance for `<iframe>` :**
+> [!NOTE]
+> **Security & performance for `<iframe>` :**
 >
 > - `loading="lazy"` reduces initial load.
 > - `sandbox="..."` restricts capabilities; add only what you need (`allow-forms`, `allow-scripts`, `allow-same-origin`, etc.).
@@ -1483,7 +1484,6 @@ Well-structured forms pair **labels** with **controls**, use the right **types/a
   <form class="form" action="/contact" method="post">
     <label for="email-pv">Email</label>
     <input id="email-pv" type="email" placeholder="name@example.com" required />
-
     <div class="inline">
       <div>
         <label for="min-pv">Min</label>
@@ -1494,10 +1494,8 @@ Well-structured forms pair **labels** with **controls**, use the right **types/a
         <input id="max-pv" type="number" min="0" max="10" />
       </div>
     </div>
-
     <label for="msg-pv">Message</label>
     <textarea id="msg-pv" rows="4" placeholder="Your message…"></textarea>
-
     <button type="submit">Send</button>
 
   </form>
@@ -1638,10 +1636,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 > - `value` and `max` determine the bar fill (0..max).
 > - When `value` is **missing**, progress is **indeterminate** (spinner-like).
 
-**OUTPUT:**
-<label for="file">File upload:</label>
-<progress id="file" value="70" max="100">70%</progress>
-
 ---
 
 ### `<meter>` (Scalar measurement)
@@ -1657,12 +1651,6 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
 >
 > - Use for known-range values (scores, battery).
 > - `low`, `high`, `optimum` help user agents choose coloring/semantics.
-
-**OUTPUT:**
-<label for="disk">Disk usage:</label>
-<meter id="disk" min="0" max="1" low="0.3" high="0.8" optimum="0.2" value="0.6">
-60%
-</meter>
 
 ---
 
@@ -1857,10 +1845,7 @@ Head with Essential tags
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 ```
 
----
-
-> [!NOTE]  
-> ✅ **Meta Quick Reference Table**
+### Meta Quick Reference Table
 
 | Tag / Attribute             | Purpose                     | Common Values                           |
 | --------------------------- | --------------------------- | --------------------------------------- |
@@ -1874,60 +1859,126 @@ Head with Essential tags
 | `<link rel="canonical">`    | Preferred page URL          | Full URL                                |
 | `<link rel="manifest">`     | PWA manifest                | Path to JSON file                       |
 
+> [!NOTE]
+>
 > - Always include `charset`, `viewport`, and `description`.
 > - Use Open Graph + Twitter tags for **rich social sharing**.
 > - Minimize `<meta keywords>`—deprecated and ignored by most engines.
 
 ## 11. Accessibility
 
-Build for **keyboard**, **screen readers**, and **color contrast**. Prefer **native controls**; add ARIA only when needed.
+Accessibility (a11y) ensures **everyone** (including people with disabilities) can use your site.  
+HTML already provides many **built-in features** — the goal is to use them correctly, and only add ARIA when no native solution exists.
+
+### Keyboard Accessibility
+
+- Every **interactive element** (links, buttons, inputs) should be usable with the `Tab` key.
+- Use **native controls** (`<button>`, `<a href>`, `<input>`) — they already support keyboard, focus, and events.
+- Don’t rely only on mouse events (`onmouseover`); add keyboard equivalents.
 
 ```html
-<!-- Images need meaningful alt; use empty alt for decorative images -->
-<img src="dog.jpg" alt="A golden retriever puppy" />
+<!-- ✅ Accessible: native button works with mouse, keyboard, screen readers -->
+<button type="button">Click Me</button>
 
-<!-- Labeling form controls -->
-<label for="email">Email</label>
+<!-- ❌ Inaccessible: <div> is not focusable or clickable by default -->
+<div onclick="doSomething()">Click Me</div>
+```
+
+---
+
+### Screen Readers
+
+Screen readers announce **semantics**: headings, landmarks, labels, roles.
+
+- Use **proper heading hierarchy** (`<h1> → <h2> → <h3>`).
+- Use `alt` on images (describe content or leave `alt=""` if decorative).
+- Connect labels with form fields using `for` + `id`.
+- Landmarks (`<header>`, `<nav>`, `<main>`, `<footer>`) help navigate pages quickly.
+
+```html
+<!-- Image with useful description -->
+<img src="dog.jpg" alt="A golden retriever puppy playing with a ball" />
+
+<!-- Decorative image (ignored by assistive tech) -->
+<img src="divider.png" alt="" />
+
+<!-- Proper form labeling -->
+<label for="email">Email address</label>
 <input id="email" type="email" autocomplete="email" />
+```
 
-<!-- Avoid redundant aria-label when a <label> exists; use one or the other -->
-<input id="search" type="search" aria-label="Site search" />
-<!-- OK if no <label> -->
+---
 
-<!-- Landmark nav with an accessible name -->
+### Color Contrast
+
+- Ensure **text contrasts** with its background:
+  - Normal text → ratio ≥ **4.5:1**
+  - Large text (18px+ bold, 24px+ normal) → ratio ≥ **3:1**
+- Don’t rely on color alone (e.g., red vs green text for errors). Add text/icons.
+
+```css
+/* Example: strong contrast */
+body {
+  background: #ffffff;
+  color: #111827; /* nearly black, excellent contrast */
+}
+```
+
+---
+
+### ARIA (Accessible Rich Internet Applications)
+
+- ARIA can **add roles or labels** when HTML alone isn’t enough.
+- Rule of thumb: **“Use native first, ARIA last.”**
+- Common cases:
+  - `aria-label` → Adds an accessible name.
+  - `aria-describedby` → Associates extra description/help text.
+  - Landmark roles (`role="navigation"`) → Only needed if you can’t use `<nav>`.
+
+```html
+<!-- aria-label gives extra context -->
 <nav aria-label="Main navigation">
   <a href="/">Home</a>
   <a href="/about">About</a>
 </nav>
 
-<!-- Skip link for keyboard users -->
-<a href="#main" class="skip-link">Skip to content</a>
-<main id="main">…</main>
+<!-- aria-describedby links help text -->
+<label for="username">Username</label>
+<input id="username" aria-describedby="username-help" />
+<p id="username-help">Must be 6–12 characters, letters and numbers only.</p>
 ```
 
-**Helpful CSS**
+---
+
+### Language
+
+Always declare a **default language** on `<html>` — critical for screen readers and translation tools.
+
+```html
+<html lang="en">
+  <!-- Content in English -->
+</html>
+```
+
+If part of text is in another language, wrap it:
+
+```html
+<p>She said <span lang="fr">« Bonjour »</span> before leaving.</p>
+```
+
+---
+
+### Skip Links & Focus
+
+Skip links allow keyboard users to **bypass navigation** and jump to content.  
+Always ensure a **visible focus style** for clarity.
+
+```html
+<a href="#main" class="skip-link">Skip to content</a>
+<main id="main">...</main>
+```
 
 ```css
-/* Visually hidden (but accessible) helper class */
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* Visible focus for keyboard users */
-:focus-visible {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
-}
-
-/* Position skip link offscreen until focused */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -1942,14 +1993,16 @@ Build for **keyboard**, **screen readers**, and **color contrast**. Prefer **nat
 }
 ```
 
-
-> [!NOTE]
+> [!NOTE]  
+> ✅ **Accessibility Checklist**
 >
-> - Ensure **color contrast** meets WCAG (4.5:1 for normal text).
-> - Maintain **logical heading order** and **tab order**.
-> - Use `role`/`aria-*` only when native semantics aren’t sufficient.
-
----
+> - Use **semantic HTML** (don’t rebuild buttons/links with `<div>`).
+> - Provide `alt` text for images.
+> - Ensure proper **color contrast** (≥ 4.5:1).
+> - Use **labels** for all form inputs.
+> - Provide **visible focus styles**.
+> - Add `lang` attribute on `<html>`.
+> - Add ARIA roles/attributes **only** when HTML doesn’t already cover the need.
 
 ## 12. Best Practices
 
@@ -1991,3 +2044,5 @@ Build for **keyboard**, **screen readers**, and **color contrast**. Prefer **nat
   <title>Descriptive Title</title>
 </head>
 ```
+
+---
