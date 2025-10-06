@@ -16,8 +16,9 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 - 📝 [Markdown Cheatsheet](markdown.md)
 - 🌱 [Git Cheatsheet](git.md)
 - 🌐 [HTML Cheatsheet](html.md)
-<!-- - 
 - 🎨 [CSS Cheatsheet](css.md)
+<!-- - 
+
 - ⚡ [JavaScript Cheatsheet](javascript.md)
 - 🖥️ [Linux Cheatsheet](linux.md) -->
 
@@ -35,7 +36,7 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
   - [x] Markdown 
   - [X] Git
   - [X] Html 
-  - [ ] CSS
+  - [X] CSS
   - [ ] JavScript
   - [ ] React
   - [ ] Linux
