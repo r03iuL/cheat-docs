@@ -17,31 +17,34 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 - 🌱 [Git Cheatsheet](git.md)
 - 🌐 [HTML Cheatsheet](html.md)
 - 🎨 [CSS Cheatsheet](css.md)
+- ⚡ [JavaScript Cheatsheet](javascript.md)
 <!-- - 
 
-- ⚡ [JavaScript Cheatsheet](javascript.md)
+
 - 🖥️ [Linux Cheatsheet](linux.md) -->
 
 ---
 
 ## 🛠️ How to use
-- 🔍 **Open a cheatsheet** and **Ctrl+F** to find what you need.  
+
+- 🔍 **Open a cheatsheet** and **Ctrl+F** to find what you need.
 - 🧠 Treat each cheatsheet as a **memory jogger**, not a tutorial.
-- ⚠️ **Note:** These cheatsheets are for quick memory refreshers only. Always refer to the official documentation for the full and up-to-date guides.  
+- ⚠️ **Note:** These cheatsheets are for quick memory refreshers only. Always refer to the official documentation for the full and up-to-date guides.
 
 ---
 
 ## 🚀 Roadmap
+
 - [ ] Add more topics
-  - [x] Markdown 
-  - [X] Git
-  - [X] Html 
-  - [X] CSS
+  - [x] Markdown
+  - [x] Git
+  - [x] Html
+  - [x] CSS
   - [ ] JavScript
   - [ ] React
   - [ ] Linux
   - [ ] Windows
   - [ ] Chrome shortcuts
   - [ ] And more ....
-- [ ] Polish formatting & structure.  
-- [ ] Maybe open for community later.  
+- [ ] Polish formatting & structure.
+- [ ] Maybe open for community later.
