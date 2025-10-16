@@ -40,7 +40,7 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
   - [x] Git
   - [x] Html
   - [x] CSS
-  - [ ] JavScript
+  - [X] JavScript
   - [ ] React
   - [ ] Linux
   - [ ] Windows
