@@ -17,11 +17,9 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 - 🌱 [Git Cheatsheet](git.md)
 - 🌐 [HTML Cheatsheet](html.md)
 - 🎨 [CSS Cheatsheet](css.md)
+- 🎯 [DOM Manipulation Cheatsheet](dom-manipulation.md)
 - ⚡ [JavaScript Cheatsheet](javascript.md)
-<!-- - 
-
-
-- 🖥️ [Linux Cheatsheet](linux.md) -->
+- 🔤 [String, Array & Object Methods](javascript-string-array-object.md)
 
 ---
 
@@ -38,13 +36,17 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 - [ ] Add more topics
   - [x] Markdown
   - [x] Git
-  - [x] Html
+  - [x] HTML
   - [x] CSS
-  - [X] JavScript
+  - [x] DOM Manipulation
+  - [x] JavaScript
+  - [x] JavaScript String/Array/Object Methods
   - [ ] React
+  - [ ] TypeScript
   - [ ] Linux
   - [ ] Windows
-  - [ ] Chrome shortcuts
+  - [ ] Chrome DevTools
   - [ ] And more ....
 - [ ] Polish formatting & structure.
+- [ ] Add more details to existing sheets.
 - [ ] Maybe open for community later.
