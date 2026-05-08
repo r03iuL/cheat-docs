@@ -1,4 +1,4 @@
-<h1 align="center"> 🎨 CSS Crash Course Cheatsheet </h1>
+<h1 align="Center"> 🎨 CSS Crash Course Cheatsheet </h1>
 
 > :rocket: A complete quick reference for mastering **CSS fundamentals and modern styling**.  
 > :book: Official Docs: [MDN CSS Guide](https://developer.mozilla.org/en-US/docs/Web/CSS)  
@@ -302,6 +302,21 @@ p {
 }
 ```
 
+#### Writing Mode (vertical text)
+
+```css
+.vertical-text {
+  writing-mode: vertical-rl;  /* right-to-left vertical */
+  /* or: writing-mode: vertical-lr;  left-to-right vertical */
+}
+
+/* Text orientation for mixed scripts */
+.mixed {
+  text-orientation: mixed;   /* default - rotates characters */
+  text-orientation: upright;  /* keeps all characters upright */
+}
+```
+
 ---
 
 ### @font-face and Google Fonts
@@ -432,6 +447,18 @@ Flexbox arranges items along a **main axis** (row or column).
 }
 ```
 
+> [!NOTE]
+> - `gap` works in Flexbox too! (modern, replaces margin hacks)
+> - `flex: 1` shorthand = `flex-grow: 1; flex-shrink: 1; flex-basis: 0%`
+
+**Common flex shorthand:**
+```css
+.item {
+  flex: 1;           /* grow:1, shrink:1, basis:0 */
+  flex: 0 0 200px;   /* don't grow, don't shrink, fixed 200px */
+}
+```
+
 ---
 
 ### Practical Layouts
@@ -477,6 +504,33 @@ nav {
   grid-template-columns: repeat(3, minmax(200px, 1fr));
 }
 ```
+
+> [!NOTE]
+> - `fr` = fraction unit (remaining space)
+> - `gap` shorthand for `row-gap` + `column-gap`
+
+#### Auto-fill vs Auto-fit (responsive grids without media queries)
+
+```css
+/* Auto-fill: creates as many columns as fit, empty columns stay empty */
+.grid-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Auto-fit: similar but empty columns collapse (items stretch to fill) */
+.grid-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+```
+
+> [!NOTE]
+> - `auto-fill` → keep column size, create more columns as space allows
+> - `auto-fit` → let columns stretch to fill space (better for equal widths)
+> - No media queries needed for responsive grids!
 
 ---
 
@@ -1036,6 +1090,63 @@ div {
   mask-image: url(mask.svg);
 }
 ```
+
+---
+
+### Additional Useful CSS Properties
+
+```css
+/* Smooth scrolling for entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Backdrop filter (blur behind element - for modals, frosted glass) */
+.glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* All property - reset all properties to inherit/initial/unset */
+.reset-to-initial {
+  all: initial;
+}
+.reset-to-inherit {
+  all: inherit;
+}
+.reset-to-unset {
+  all: unset;
+}
+
+/* Caret color for inputs */
+input {
+  caret-color: #007bff;
+}
+
+/* Cursor styles */
+.custom-cursor {
+  cursor: grab;      /* like draggable items */
+  cursor: grabbing;
+  cursor: not-allowed;
+  cursor: wait;
+}
+
+/* User select (prevent text selection) */
+.no-select {
+  user-select: none;
+}
+
+/* Pointer events */
+.disable-click {
+  pointer-events: none;
+}
+```
+
+> [!NOTE]
+> - `scroll-behavior: smooth` - enables smooth scroll when clicking anchor links
+> - `backdrop-filter` - blur what's behind (needs browser support)
+> - `all: unset` - resets all properties to inherited or initial value
+> - `pointer-events: none` - makes element unclickable (good for overlays)
 
 ---
 

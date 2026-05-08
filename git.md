@@ -1,6 +1,6 @@
-# 🧰 Git & GitHub Cheatsheet (2025)
+# 🧰 Git & GitHub Cheatsheet (2026)
 
-> :bulb: This is a quick reference for daily Git/GitHub daily used commands.
+> :bulb: This is a quick reference for daily Git/GitHub commands.
 
 > :book: Official Docs: **[Git Book](https://git-scm.com/doc) • [Git Reference](https://git-scm.com/docs) • [GitHub Docs](https://docs.github.com)**
 
@@ -136,6 +136,15 @@ node_modules/
 > [!NOTE]  
 > Generate stack-specific templates at **https://gitignore.io**, then trim to fit.
 
+> :bulb: **Tip** (clean untracked files)
+> To remove untracked files (not in .gitignore):
+> ```bash
+> git clean -n                              # preview what will be deleted
+> git clean -f                              # delete untracked files
+> git clean -fd                             # delete files + directories
+> git clean -fdx                            # delete everything including ignored
+> ```
+
 ---
 
 ## Manage remotes (add / set-url / remove)
@@ -171,18 +180,26 @@ git remote remove <name>                       # remove a remote
 Before you commit, quickly see what changed and exactly what lines will be recorded.
 
 ```bash
-git status -sb                                 # concise status + branch
-git diff                                       # unstaged changes
-git diff --staged                              # what will be committed
+git status -sb                                 # concise status + branch (-s=short, -b=branch)
+git status                                    # full status
+git diff                                       # unstaged changes (working dir vs staging)
+git diff --staged                             # staged changes (staging vs last commit)
+git diff --name-only                          # just file names, no content
+git diff --name-status                        # file names with status (M, A, D)
+git diff HEAD                                 # compare to last commit (includes staged)
 ```
 
 **Keyword breakdown**
 
-- `-s -b` — Short format; show branch header.
+- `-s -b` — `-s` short format + `-b` show branch header.
 - `--staged` — Compare index to last commit.
+- `HEAD` — Reference to current commit (last commit).
 
-> :bulb: **Tip**  
-> Add a pretty log alias once:  
+> [!NOTE]
+> `git diff --cached` is same as `git diff --staged` (older syntax).
+
+> :bulb: **Tip**
+> Add a pretty log alias once:
 > `git config --global alias.lg "log --oneline --graph --decorate --all"` → then run `git lg`.
 
 ---
@@ -193,15 +210,23 @@ Curate exactly what goes into a commit; unstage safely without losing work.
 
 ```bash
 git add <file>                                 # stage a specific file
-git add -p                                     # interactively stage hunks
+git add -p                                     # interactively stage hunks (chunks of changes)
+git add -u                                     # stage only modified files (not new)
+git add -A                                     # stage all (new + modified + deleted)
 git restore --staged <file>                    # unstage but keep edits
+git reset <file>                               # unstage file (same as above)
 git add .                                      # stage everything under CWD (be cautious)
 ```
 
 **Keyword breakdown**
 
 - `<file>` — Path to stage/unstage.
-- `-p` — Patch (interactive) mode to choose hunks.
+- `-p` — Patch (interactive) mode to choose **hunks** (chunks of changes in a file).
+- `-u` / `--update` — Stage only files already tracked (not new/untracked).
+- `-A` / `--all` — Stage everything including deleted files.
+
+> [!NOTE]
+> A **hunk** is a continuous chunk of changes in a file. Interactive staging (`-p`) lets you choose which hunks to stage - useful for splitting large changes into multiple commits.
 
 > [!NOTE]  
 > In large repos, prefer `git add -p` + `git status` over `git add .`.
@@ -255,21 +280,43 @@ git blame <file>                                # last modifier per line
 Use a branch per task; switch safely; delete after merge to keep things tidy.
 
 ```bash
+# View branches
 git branch                                      # list local branches
+git branch -a                                   # list ALL branches (local + remote)
+git branch -vv                                  # list with tracking branch info
+git branch -r                                   # list remote branches only
+
+# Create & switch (modern)
 git switch -c <branch>                          # create + switch
-git switch <branch>                             # switch existing
-git branch -d <branch>                          # delete merged branch
+git switch <branch>                             # switch to existing
+
+# Create & switch (older but still works)
+git checkout -b <branch>                        # create + switch (older syntax)
+git checkout <branch>                           # switch (older syntax)
+
+# Delete branches
+git branch -d <branch>                          # delete merged branch (safe)
+git branch -D <branch>                          # force delete (danger - ensure work merged!)
+git push origin --delete <branch>               # delete remote branch
 ```
 
 **Keyword breakdown**
 
-- `<branch>` — e.g., `feat/login`, `fix/crash`.
+- `<branch>` — e.g., `feat/login`, `fix/crash`, `hotfix/bug-123`.
+- `-a` — All (local + remote).
+- `-r` — Remote branches only.
+- `-vv` — Verbose (shows tracking branch info).
+- `-d` — Safe delete (only if merged).
+- `-D` — Force delete (danger).
 
-> [!NOTE]  
-> `git branch -D <branch>` force-deletes (danger—ensure work is merged/backed up).
+> [!NOTE]
+> `git checkout` is older but still widely used. `git switch` and `git restore` are newer (Git 2.23+) and more intuitive.
+
+> [!NOTE]
+> `git branch -vv` shows you which local branches are tracking which remote branches — useful for seeing if you're ahead/behind.
 
 > :bulb: **Tip**  
-> Prefix branches (`feat/`, `fix/`, `chore/`) so PRs group nicely.
+> Prefix branches (`feat/`, `fix/`, `chore/`, `hotfix/`) so PRs group nicely in GitHub.
 
 ---
 
@@ -310,7 +357,19 @@ git rebase --abort                              # cancel and return
 - `<branch>` — Source branch to combine into current.
 
 > [!NOTE]  
-> Don’t rebase commits others already pulled—rebasing rewrites history.
+> Don't rebase commits others already pulled—rebasing rewrites history.
+
+> [!NOTE]
+> **When to use which:**
+> - **Merge** → Shared/public branches (safe, preserves history)
+> - **Rebase** → Personal branches before pushing (clean history)
+> - **Interactive rebase** → Squash multiple commits into one
+
+> :bulb: **Tip** (rebase -i commands)
+> - `pick` = keep as-is
+> - `squash` / `s` = combine with previous
+> - `reword` / `r` = change message
+> - `drop` / `d` = remove commit
 
 ---
 
@@ -340,18 +399,42 @@ git merge --continue                            # or: git rebase --continue
 Pick the least-destructive option that fits the mistake.
 
 ```bash
-git restore <file>                              # discard unstaged changes to a file
-git restore --staged <file>                     # unstage but keep edits
-git reset --soft HEAD~1                         # move back 1 commit; keep changes staged
-git revert <sha>                                # new commit that undoes <sha> (safe on shared)
+# Discard changes (restore working directory)
+git restore <file>                             # discard unstaged changes
+git restore .                                  # discard all unstaged changes
+git checkout -- <file>                         # older syntax (same as restore)
+
+# Unstage (remove from staging area)
+git restore --staged <file>                    # unstage but keep edits
+git reset HEAD <file>                          # same as above (older syntax)
+
+# Undo commits (three levels of destruction)
+git reset --soft HEAD~1                        # undo last commit, keep changes STAGED
+git reset --mixed HEAD~1                       # undo last commit, keep changes UNSTAGED (default)
+git reset --hard HEAD~1                        # undo last commit, DISCARD all changes (danger!)
+
+# Safe undo (creates new commit that undoes changes)
+git revert <sha>                               # new commit that undoes <sha> (safe for shared branches)
+git revert HEAD                                # revert the latest commit
 ```
 
 **Keyword breakdown**
 
 - `<sha>` — Commit to reverse.
+- `HEAD~1` — Go back 1 commit (can use `HEAD~2`, `HEAD~3`, etc. or `HEAD~n`)
+- `--soft` — Move commits back, keep changes staged
+- `--mixed` — Move commits back, keep changes unstaged (default behavior)
+- `--hard` — Move commits back, discard all changes permanently
 
-> [!NOTE]  
-> Avoid `git reset --hard` unless you’re absolutely sure—it permanently discards work.
+> [!NOTE]
+> **When to use which:**
+> - `--soft` → Keep changes staged to recommit differently
+> - `--mixed` (default) → Unstage changes, decide what to keep
+> - `--hard` → Throw away changes entirely (risky!)
+> - `revert` → Safe for shared/public branches (creates new commit)
+
+> [!NOTE]
+> For shared branches, always use `git revert` — it creates a new commit that undoes changes, preserving history.
 
 ---
 
@@ -360,20 +443,30 @@ git revert <sha>                                # new commit that undoes <sha> (
 Park changes temporarily to switch tasks; reapply later.
 
 ```bash
-git stash push -m "<note>"                      # save WIP with a label
-git stash list                                  # view stashes
-git stash show -p <stash-ref>                   # preview contents
-git stash apply <stash-ref>                     # reapply (keeps stash)
-git stash drop <stash-ref>                      # delete when done
+git stash push -m "<note>"                      # save WIP with a label (short: git stash -m "...")
+git stash push -k                               # stash ONLY unstaged, keep staged changes staged
+git stash push --include-untracked              # also stash new untracked files
+git stash list                                  # view all stashes
+git stash show -p <stash-ref>                   # preview contents (full diff)
+git stash show <stash-ref>                       # preview (just file names)
+git stash apply <stash-ref>                     # reapply stash (keeps stash in list)
+git stash pop <stash-ref>                       # reapply AND delete stash (most common)
+git stash drop <stash-ref>                      # delete stash after done
+git stash clear                                 # delete ALL stashes at once
+git stash branch <new-branch> <stash-ref>       # create new branch from stash
 ```
 
 **Keyword breakdown**
 
-- `<note>` — Short description (e.g., “wip: form layout”).
-- `<stash-ref>` — Like `stash@{0}`.
+- `<note>` — Short description (e.g., "wip: form layout").
+- `<stash-ref>` — Like `stash@{0}` (most recent) or `stash@{1}` (second most recent).
+- `-k` / `--keep-index` — Keep staged changes staged (only stash unstaged).
 
-> :bulb: **Tip**  
-> Use `git stash push -k` to keep staged changes staged.
+> [!NOTE]
+> `git stash pop` is most commonly used — it reapplies changes and removes the stash in one step.
+
+> :bulb: **Tip**
+> Use `git stash push -k` to keep staged changes staged while stashing only your work-in-progress.
 
 ---
 
@@ -568,3 +661,41 @@ Protect `main` and enforce review/CI to keep history healthy.
 
 > :bulb: **Tip**  
 > Turn on “Include administrators” so rules apply to everyone.
+
+---
+
+### GitHub CLI (gh) basics
+
+The `gh` CLI lets you manage PRs, issues, and repos from terminal.
+
+```bash
+# Installation (macOS)
+brew install gh
+
+# Auth
+gh auth login                                   # authenticate with GitHub
+
+# Repositories
+gh repo create                                  # create new repo
+gh repo clone <owner>/<repo>                    # clone repo
+
+# Pull Requests
+gh pr create                                    # create PR (opens editor)
+gh pr create --title "Fix bug" --body "Details" # create with info
+gh pr list                                      # list open PRs
+gh pr checkout <number>                         # checkout PR locally
+gh pr view <number>                             # view PR details
+gh pr merge <number>                            # merge PR
+gh pr review <number> --approve                 # approve PR
+
+# Issues
+gh issue create                                 # create issue
+gh issue list                                   # list issues
+gh issue view <number>                          # view issue
+```
+
+> [!NOTE]
+> Use `gh` instead of web UI for repetitive tasks - faster and scriptable!
+
+> :bulb: **Pro tip**
+> Add `--web` flag to open in browser: `gh pr create --web`

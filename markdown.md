@@ -6,7 +6,7 @@
 
 > :rocket: Also **[here](https://www.youtube.com/watch?v=ftOBvusMHjQ)** is a youtube crash course on Markdown by **[codeSTACKr](https://www.youtube.com/@codeSTACKr)**
 
-# 📑 Table of Content:
+# 📑 Table of Contents:
 
 - [Headings](#headings)
 - [Emphasis](#emphasis)
@@ -17,7 +17,8 @@
 - [Images](#images)
 - [Images with links](#images-with-links)
 - [Blockquotes](#blockquotes)
-- [Escape Special Charecter](#escape-special-charecter)
+- [Code](#code)
+- [Escape Special Character](#escape-special-character)
 - [Tables](#tables)
 - [Horizontal Rule](#horizontal-rule)
 - [GitHub Flavored Markdown(GFM)](#github-flavored-markdowngfm)
@@ -100,7 +101,7 @@ This is newline.
 
 ## Lists
 
-**Un Ordered**
+**Unordered**
 
 ```md
 - Item 1
@@ -253,7 +254,7 @@ Nested blockquote
 ```md
 > This is
 >
-> an exapmle of
+> an example of
 >
 > > Nested blockquote
 ```
@@ -262,7 +263,7 @@ Output:
 
 > This is
 >
-> an exapmle of
+> an example of
 >
 > > Nested blockquote
 
@@ -286,9 +287,9 @@ console.log("Hello, Markdown!");
 
 ---
 
-## Escape Special Charecter
+## Escape Special Character
 
-Add \" \ \" before any special charecter to escape
+Add backslash `\` before any special character to escape.
 
 ```md
     \****
@@ -419,7 +420,7 @@ Term
 >
 > <kbd>Ctrl</kbd> + <kbd>C</kbd> → keyboard keys
 >
-> <sup> Superscript</sup> / <sub>Subscript</sub
+> <sup> Superscript</sup> / <sub>Subscript</sub>
 
 </details>
 

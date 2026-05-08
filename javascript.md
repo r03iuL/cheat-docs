@@ -1,4 +1,4 @@
-<h1 align="center"> 🧠 JavaScript Crash Course Cheatsheet </h1>
+<h1 align="Center"> 🧠 JavaScript Crash Course Cheatsheet </h1>
 
 > :rocket: A complete quick reference for mastering **JavaScript fundamentals**.  
 
@@ -45,7 +45,6 @@
   - [Fetch API](#fetch-api)
 - [⚡ 6. ES6+ Modern Features](#-6-es6-modern-features)
   - [Destructuring](#destructuring)
-  - [Template Literals](#template-literals-1)
   - [Modules](#modules)
 - [🧱 7. OOP \& Functional Programming](#-7-oop--functional-programming)
   - [Classes](#classes)
@@ -348,6 +347,33 @@ process(() => console.log("Done"));
 
 > :bulb: Callbacks allow async operations like loading data or handling events.
 
+### Function Methods (call, apply, bind)
+
+```js
+function greet(message) {
+  return `${message}, ${this.name}!`;
+}
+const person = { name: "Alice" };
+
+greet.call(person, "Hello")    // "Hello, Alice!" - call with args
+greet.apply(person, ["Hi"])   // "Hi, Alice!" - call with array
+const bound = greet.bind(person);
+bound("Hey")                    // "Hey, Alice!" - returns new function
+```
+
+### IIFE (Immediately Invoked Function Expression)
+
+```js
+// Run immediately, create private scope
+(function() {
+  const privateVar = "hidden";
+  console.log("IIFE runs once");
+})();
+
+// Arrow version
+(() => console.log("Immediate"))();
+```
+
 ---
 
 ## 🧮 3. Data Structures & Manipulation
@@ -448,17 +474,60 @@ const user = { name: "Ava", age: 20 };
 const { name, age } = user;
 ```
 
----
-
-### Template Literals
+### Optional Chaining & Nullish Coalescing
 
 ```js
-console.log(`Name: ${name}, Age: ${age}`);
+// Optional chaining - safe property access
+const user = { profile: { name: "Alice" } };
+console.log(user.profile?.name);      // "Alice"
+console.log(user.address?.city);      // undefined (no error)
+console.log(user.profile?.bad?.method); // undefined
+
+// Nullish coalescing - default value only for null/undefined
+const value = null ?? "default";      // "default"
+const zero = 0 ?? "default";          // 0 (not nullish)
+const empty = "" ?? "default";        // "" (not nullish)
+```
+
+### BigInt & Symbol
+
+```js
+// BigInt - large integers
+const big = 9007199254740991n;
+console.log(big + 1n);               // 9007199254740992n
+
+// Symbol - unique identifiers
+const sym = Symbol("description");
+const sym2 = Symbol("description");
+console.log(sym === sym2);           // false
 ```
 
 ---
 
-### Modules
+### Modules (import/export)
+
+```js
+// Named exports (file: math.js)
+export const add = (a, b) => a + b;
+export const multiply = (a, b) => a * b;
+export default function subtract(a, b) { return a - b; }
+
+// Named imports
+import { add, multiply } from './math.js';
+
+// Default import
+import subtract from './math.js';
+
+// Combined
+import subtract, { add, multiply } from './math.js';
+
+// Re-export
+export { add, multiply } from './math.js';
+```
+
+---
+
+## 🧱 7. OOP & Functional Programming
 
 ```js
 // export const greet = () => console.log("Hi");
@@ -504,33 +573,69 @@ class Dog extends Animal {
 
 ---
 
-## ⏳ 8. Asynchronous Patterns
+## ⚠️ Error Handling
 
-### Callbacks
-
-```js
-setTimeout(() => console.log("Done"), 1000);
-```
-
----
-
-### Promises
+### try/catch/finally
 
 ```js
-new Promise((resolve) => resolve(42)).then(console.log);
-```
-
----
-
-### Async/Await
-
-```js
-async function loadData() {
-  const res = await fetch("https://api.github.com");
-  console.log(await res.json());
+try {
+  const result = JSON.parse(userInput);
+  console.log(result);
+} catch (error) {
+  console.error("Parse failed:", error.message);
+} finally {
+  console.log("Cleanup runs always");
 }
 ```
 
+### Custom Errors
+
+```js
+class ValidationError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
+}
+
+function validate(value) {
+  if (!value) throw new ValidationError("Value required");
+}
+```
+
+---
+
+## ⏳ 8. Asynchronous Patterns
+
+### Overview
+
+JavaScript handles async operations with:
+- **Callbacks** - Traditional pattern
+- **Promises** - Modern async handling
+- **Async/Await** - Syntactic sugar over promises
+
+```js
+// Basic async example
+fetch('/api/data')
+  .then(res => res.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
+// Modern async/await
+async function getData() {
+  try {
+    const res = await fetch('/api/data');
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+  }
+}
+```
+
+> :link: For detailed async operations (timing, promises, fetch, observers, web workers, async generators), see [javascript-async-operations.md](./javascript-async-operations.md)
+
 > :bulb: **Tip:** Practice each concept by building small apps (like counters, to-do lists, or API fetchers).
+
+> :link: For detailed **String, Array, and Object methods**, see [string-array-object-methods-js.md](./string-array-object-methods-js.md)
 
 ---

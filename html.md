@@ -21,6 +21,7 @@
     - [3. External JavaScript (✅ Best Practice)](#3-external-javascript--best-practice)
     - [4. Modern ES Modules](#4-modern-es-modules)
   - [Comments](#comments)
+  - [Global Attributes](#global-attributes)
 - [2. Text \& Content](#2-text--content)
   - [Headings `<h1>–<h6>`](#headings-h1h6)
   - [Paragraphs `<p>`](#paragraphs-p)
@@ -41,6 +42,7 @@
 - [5. Media](#5-media)
   - [Images `<img>`](#images-img)
     - [Responsive images (recommended)](#responsive-images-recommended)
+    - [Picture element (art direction)](#picture-element-art-direction)
     - [Common CSS for images](#common-css-for-images)
   - [Figures `<figure>` + `<figcaption>`](#figures-figure--figcaption)
   - [Audio `<audio>`](#audio-audio)
@@ -320,8 +322,51 @@ HTML comments are ignored by the browser. Useful for notes, TODOs, or temporaril
 -->
 
 <p>This will show on the page</p>
-<!-- <p>This is hidden and won’t render</p> -->
+<!-- <p>This is hidden and won't render</p> -->
 ```
+
+### Global Attributes
+
+These attributes work on most HTML elements.
+
+```html
+<!-- id - unique identifier (use once per page) -->
+<div id="header">Header content</div>
+
+<!-- class - reusable styling (use multiple times) -->
+<div class="container box">Multiple classes</div>
+
+<!-- title - tooltip on hover -->
+<span title="Extra info">Hover me</span>
+
+<!-- hidden - hide element (same as display:none) -->
+<p hidden>This is hidden</p>
+
+<!-- style - inline CSS -->
+<p style="color: red;">Red text</p>
+
+<!-- data-* - custom data storage -->
+<div data-user-id="123" data-role="admin">Custom data</div>
+
+<!-- dir - text direction -->
+<p dir="rtl">Right to left text</p>
+
+<!-- draggable - enable drag and drop -->
+<img src="image.png" draggable="true" />
+```
+
+> [!NOTE]
+> **Common global attributes:**
+> - `id` → Unique identifier (use kebab-case: `main-content`)
+> - `class` → Multiple allowed, space-separated
+> - `data-*` → Store custom data (accessible via JS: `element.dataset.userId`)
+> - `hidden` → Hides element from rendering
+> - `title` → Shows tooltip on hover (avoid for important info - not accessible)
+
+> :bulb: **Tip**
+> Use `data-` attributes to store API IDs, user preferences, or state that's accessed via JavaScript.
+
+---
 
 ## 2. Text & Content
 
@@ -755,15 +800,45 @@ decoding="async"
   height="600"
   loading="lazy"
 />
-
-layout hint -- /> alt="Product card on a dark background" width="800"
-height="600" loading="lazy" />
 ```
 
 > [!NOTE]
 >
 > - `srcset` lists width-based candidates (use real rendered widths).
 > - `sizes` tells the browser how wide the image will render (per media query), so it can pick a candidate **before** layout.
+
+#### Picture element (art direction)
+
+Use `<picture>` when you need **different images for different screen sizes** (not just different sizes).
+
+```html
+<picture>
+  <!-- Mobile: crop for narrow screens -->
+  <source media="(max-width: 600px)" srcset="hero-mobile.jpg">
+
+  <!-- Tablet -->
+  <source media="(max-width: 1024px)" srcset="hero-tablet.jpg">
+
+  <!-- Desktop: default -->
+  <img src="hero-desktop.jpg" alt="Hero image">
+</picture>
+```
+
+> [!NOTE]
+> - `<picture>` lets you **choose different images** based on conditions
+> - Use for: art direction (different crops), different formats (WebP vs JPEG), different resolutions
+> - Always include `<img>` as fallback
+> - Use `media` for viewport conditions, `type` for file formats
+
+**Different formats example:**
+
+```html
+<picture>
+  <source srcset="image.avif" type="image/avif">
+  <source srcset="image.webp" type="image/webp">
+  <img src="image.jpg" alt="Description">
+</picture>
+```
 
 #### Common CSS for images
 
@@ -797,7 +872,7 @@ img {
     height="800"
     loading="lazy"
   />
-  <figcaption>Morning paddle at Emerald Lake — July 2025</figcaption>
+  <figcaption>Morning paddle at Emerald Lake — July 2026</figcaption>
 </figure>
 ```
 
@@ -893,7 +968,6 @@ audio {
 
 ### Iframe `<iframe>`
 
-````html
 ```html
 <!-- Defer offscreen iframes; provide an accessible title -->
 <iframe
@@ -907,7 +981,7 @@ audio {
   allowfullscreen
   sandbox="allow-scripts allow-same-origin allow-presentation"
 ></iframe>
-````
+```
 
 > [!NOTE]
 > **Security & performance for `<iframe>` :**
@@ -1237,7 +1311,7 @@ Well-structured forms pair **labels** with **controls**, use the right **types/a
 <!-- min, max, step provide numeric constraints -->
 <input type="number" min="0" max="100" step="5" placeholder="0–100" />
 
-<input type="date" min="2025-01-01" max="2025-12-31" />
+<input type="date" min="2026-01-01" max="2026-12-31" />
 
 <!-- Accept only images; allow selecting multiple files -->
 <input type="file" accept="image/*" multiple />
@@ -1257,7 +1331,7 @@ Well-structured forms pair **labels** with **controls**, use the right **types/a
   <p><input type="password" minlength="8" placeholder="Min 8 chars" /></p>
   <p><input type="email" placeholder="name@example.com" required /></p>
   <p><input type="number" min="0" max="100" step="5" placeholder="0–100" /></p>
-  <p><input type="date" min="2025-01-01" max="2025-12-31" /></p>
+  <p><input type="date" min="2026-01-01" max="2026-12-31" /></p>
   <p><input type="file" accept="image/*" multiple /></p>
   <p><label><input type="checkbox" name="tos" required /> I agree</label></p>
   <p>
@@ -1541,7 +1615,7 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
   <a href="mailto:hi@example.com">hi@example.com</a>
 </address>
 
-<time datetime="2025-09-30">Sept 30, 2025</time>
+<time datetime="2026-09-30">Sept 30, 2026</time>
 <!-- datetime must be machine-readable: YYYY-MM-DD or full ISO8601 -->
 ```
 
@@ -1572,7 +1646,7 @@ Use **landmark elements** to describe page regions for SEO, accessibility, and m
   <aside>Sidebar</aside>
   <footer>Footer</footer>
   <address>Contact: Example Inc., 123 Road — <a href="mailto:hi@example.com">hi@example.com</a></address>
-  <p>Published: <time datetime="2025-09-30">Sept 30, 2025</time></p>
+  <p>Published: <time datetime="2026-09-30">Sept 30, 2026</time></p>
 </details>
 
 ---

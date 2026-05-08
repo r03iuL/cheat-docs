@@ -646,12 +646,24 @@ document.addEventListener("keydown", (e) => {
 
 // Form events
 form.addEventListener("submit", handler)
-input.addEventListener("input", (e) => console.log(e.target.value)) // Real-time
-input.addEventListener("change", handler) // On blur after change
+input.addEventListener("input", (e) => console.log(e.target.value)) // Real-time as user types
+input.addEventListener("change", handler) // Fires on blur after value changed
 
 // Focus
 input.addEventListener("focus", handler)
 input.addEventListener("blur", handler)
+```
+
+> [!NOTE]
+> - `input` fires on every keystroke/value change (real-time)
+> - `change` fires on blur AFTER value was changed (less frequent)
+> - Use `input` for instant validation, `change` for final value
+
+```js
+// Check if element matches a selector
+const btn = document.querySelector("button")
+console.log(btn.matches(".primary")) // true/false
+console.log(btn.matches("[data-action]")) // true/false
 ```
 
 ---
@@ -702,6 +714,23 @@ element.previousElementSibling
 element.nextElementSibling
 ```
 
+```js
+// Scroll element into view
+element.scrollIntoView()              // Default: scroll to top of element
+element.scrollIntoView({ behavior: "smooth", block: "center" })
+
+// Get element position/size (relative to viewport)
+const rect = element.getBoundingClientRect()
+console.log(rect.top, rect.bottom, rect.left, rect.right)
+console.log(rect.width, rect.height)
+console.log(rect.x, rect.y)
+
+// Check if element is in viewport
+const isVisible = rect.top >= 0 && rect.left >= 0 &&
+                  rect.bottom <= window.innerHeight &&
+                  rect.right <= window.innerWidth
+```
+
 ```html
 <div class="container">
   <div class="child"></div>
@@ -735,6 +764,9 @@ form.addEventListener("submit", (e) => {
   // Or get individual values
   const name = e.target.elements.name.value
   const email = e.target.elements.email.value
+
+  // Reset form after submit
+  e.target.reset()
 })
 ```
 
@@ -766,9 +798,17 @@ form.addEventListener("submit", (e) => {
 ### Wait for DOM Ready
 
 ```js
-// Modern: DOMContentLoaded fires when HTML is parsed
+// Check current state
+console.log(document.readyState) // "loading" | "interactive" | "complete"
+
+// DOMContentLoaded: when HTML is parsed (CSS/images may still load)
 document.addEventListener("DOMContentLoaded", () => {
   // Safe to query DOM
+})
+
+// Load: everything loaded
+window.addEventListener("load", () => {
+  // Everything including images loaded
 })
 
 // Or place script at end of body (simpler)
@@ -826,6 +866,7 @@ element.classList.toggle("hidden")
 ### Debounce / Throttle
 
 ```js
+// Debounce: wait until user stops typing before acting
 function debounce(fn, delay) {
   let timeout
   return (...args) => {
@@ -834,17 +875,34 @@ function debounce(fn, delay) {
   }
 }
 
-// Usage
-const handleInput = debounce((e) => {
-  console.log(e.target.value)
-}, 300)
+// Throttle: limit how often action fires (e.g., scroll, resize)
+function throttle(fn, limit) {
+  let inThrottle
+  return (...args) => {
+    if (!inThrottle) {
+      fn(...args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }
+}
 
-input.addEventListener("input", handleInput)
+// Usage - Debounce (search input)
+const handleSearch = debounce((query) => {
+  console.log("Searching:", query)
+}, 300)
+input.addEventListener("input", (e) => handleSearch(e.target.value))
+
+// Usage - Throttle (scroll handler)
+const handleScroll = throttle(() => {
+  console.log("Scroll position:", window.scrollY)
+}, 100)
+window.addEventListener("scroll", handleScroll)
 ```
 
 > [!NOTE]
-> - Debounce: wait until user stops typing before acting
-> - Throttle: limit how often action fires (e.g., scroll events)
+> - **Debounce**: wait until user stops typing before acting (search, validation)
+> - **Throttle**: limit how often action fires (scroll, resize, mousemove)
 
 ---
 
