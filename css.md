@@ -580,22 +580,348 @@ input:focus {
 
 ### Pseudo-classes
 
+Pseudo-classes select elements based on state, position, or behavior.
+
+#### State Pseudo-classes
+
 ```css
+/* Hover - when mouse is over element */
+button:hover {
+  background-color: #007bff;
+}
+
+/* Active - when element is being activated (clicked) */
+button:active {
+  transform: scale(0.95);
+}
+
+/* Focus - when element has focus (keyboard nav) */
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Visited - for links that have been visited */
+a:visited {
+  color: #551a8b;
+}
+
+/* Focus-visible - focus but only if keyboard (not mouse click) */
+button:focus-visible {
+  outline: 2px solid #007bff;
+}
+
+/* Checked - for radio/checkbox */
+input[type="checkbox"]:checked {
+  background-color: #007bff;
+}
+
+/* Disabled / Enabled */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+button:enabled {
+  cursor: pointer;
+}
+```
+
+> [!NOTE]
+> - `:hover` works on any element, not just links
+> - `:focus` is essential for accessibility (keyboard navigation)
+> - Use `:focus-visible` instead of `:focus` to avoid ugly outlines on mouse clicks
+
+---
+
+#### Structural Pseudo-classes (Position-based)
+
+```css
+/* First/last child */
+li:first-child {
+  border-top: none;
+}
+li:last-child {
+  border-bottom: none;
+}
+
+/* Specific child (1-indexed) */
 li:nth-child(2) {
   color: green;
+}
+li:nth-child(odd) {
+  background: #f0f0f0;
+}
+li:nth-child(even) {
+  background: #fff;
+}
+li:nth-child(3n) {
+  /* Every 3rd item */
+  font-weight: bold;
+}
+li:nth-child(3n+1) {
+  /* Every 3rd starting from 1 */
+}
+
+/* Of specific type */
+div:first-of-type {
+  /* First div among siblings */
+}
+div:last-of-type {
+  /* Last div among siblings */
+}
+div:nth-of-type(2) {
+  /* Second div */
+}
+
+/* Only child / Only of type */
+p:only-child {
+  /* Element with no siblings */
+}
+p:only-of-type {
+  /* Only paragraph among siblings */
+}
+
+/* Empty elements */
+div:empty {
+  display: none;
+}
+```
+
+> [!NOTE]
+> - `nth-child(n)` counts all children, `nth-of-type(n)` counts only that element type
+> - Use `2n` or `even` for zebra striping, `2n+1` or `odd` for alternating
+
+---
+
+#### Negation and Logic Pseudo-classes
+
+```css
+/* Not - exclude elements */
+li:not(.active) {
+  color: gray;
+}
+input:not([type="submit"]) {
+  border: 1px solid #ccc;
+}
+
+/* Has - select elements containing something (parent selector) */
+.card:has(.badge) {
+  position: relative;
+}
+div:has(input:checked) {
+  background: #e0ffe0;
+}
+
+/* Where - like :not but zero specificity */
+:where(.sidebar, .footer) a {
+  color: inherit;
+}
+
+/* Is - select multiple, matches any */
+:is(h1, h2, h3) {
+  line-height: 1.2;
+}
+```
+
+> [!NOTE]
+> - `:has()` is powerful - allows selecting parents based on children!
+> - `:where()` is like `:is()` but with zero specificity (useful for resets)
+
+---
+
+#### Form Pseudo-classes
+
+```css
+/* Required / Optional */
+input:required {
+  border-color: red;
+}
+input:optional {
+  border-color: #ccc;
+}
+
+/* Valid / Invalid */
+input:valid {
+  border-color: green;
+}
+input:invalid {
+  border-color: red;
+}
+
+/* In-range / Out-of-range */
+input[type="number"]:in-range {
+  border-color: green;
+}
+input[type="number"]:out-of-range {
+  border-color: red;
+}
+
+/* Placeholder shown */
+input:placeholder-shown {
+  background: #f0f0f0;
 }
 ```
 
 ---
 
-### Pseudo-elements
+#### Language Pseudo-classes
 
 ```css
+/* Language specific */
+html:lang(en) {
+  /* English content */
+}
+html:lang(fr) {
+  /* French content */
+}
+
+/* Direction */
+p:dir(ltr) {
+  text-align: left;
+}
+p:dir(rtl) {
+  text-align: right;
+}
+```
+
+---
+
+> [!NOTE]
+> **Quick Reference:**
+> - `:hover` / `:active` - user interaction
+> - `:focus` / `:focus-visible` - keyboard accessibility
+> - `:first-child` / `:last-child` - position
+> - `:nth-child(n)` - position-based selection
+> - `:not()` - exclusion
+> - `:has()` - parent selection (modern!)
+
+---
+
+### Pseudo-elements
+
+Pseudo-elements style specific parts of an element or insert content.
+
+#### Content Insertion
+
+```css
+/* Before - insert content before element's content */
 h1::before {
   content: "★ ";
   color: gold;
 }
+
+/* After - insert content after element's content */
+h1::after {
+  content: " (New)";
+  color: red;
+  font-size: 0.8em;
+}
+
+/* Insert attribute value */
+a[href^="https"]::before {
+  content: "🔗 ";
+}
 ```
+
+> [!NOTE]
+> - `::before` and `::after` require `content` property
+> - Use for icons, decorative elements, clearfix hacks
+
+---
+
+#### Text Selection
+
+```css
+/* Selection - style selected text */
+::selection {
+  background: #007bff;
+  color: white;
+}
+```
+
+---
+
+#### Form Styling
+
+```css
+/* Placeholder - style input placeholder */
+input::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* File upload button */
+input::file-selector-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+}
+```
+
+---
+
+#### First Letter / Line
+
+```css
+/* First letter (drop cap effect) */
+p::first-letter {
+  font-size: 3em;
+  float: left;
+  line-height: 1;
+}
+
+/* First line */
+p::first-line {
+  font-weight: bold;
+}
+```
+
+---
+
+#### Scrollbar (Webkit)
+
+```css
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+```
+
+---
+
+#### Backdrop (Dialog/Modal)
+
+```css
+/* Behind modal/dialog */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+```
+
+---
+
+> [!NOTE]
+> **Quick Reference:**
+> - `::before` / `::after` - insert content (requires `content`)
+> - `::first-letter` / `::first-line` - text styling
+> - `::selection` - selected text
+> - `::placeholder` - input hints
+
+> [!NOTE]
+> **Single vs Double Colon:**
+> - Modern CSS uses double colon `::` for pseudo-elements
+> - Single colon `:` works for backward compatibility but prefer `::`
 
 ---
 
