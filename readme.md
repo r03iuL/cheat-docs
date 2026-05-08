@@ -19,7 +19,8 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
 - 🎨 [CSS Cheatsheet](css.md)
 - 🎯 [DOM Manipulation Cheatsheet](dom-manipulation.md)
 - ⚡ [JavaScript Cheatsheet](javascript.md)
-- 🔤 [String, Array & Object Methods](javascript-string-array-object.md)
+- 🔤 [Javascript String,Array & Object](javascript-string-array-object.md)
+- ⚡ [Javascript Async Operations](javascript-async-operations.md)
 
 ---
 
@@ -41,6 +42,7 @@ Designed as a personal knowledge base, but shared openly for anyone who wants a 
   - [x] DOM Manipulation
   - [x] JavaScript
   - [x] JavaScript String/Array/Object Methods
+  - [x] JavaScript Async Operations
   - [ ] React
   - [ ] TypeScript
   - [ ] Linux
