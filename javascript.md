@@ -529,15 +529,6 @@ export { add, multiply } from './math.js';
 
 ## 🧱 7. OOP & Functional Programming
 
-```js
-// export const greet = () => console.log("Hi");
-// import { greet } from './file.js';
-```
-
----
-
-## 🧱 7. OOP & Functional Programming
-
 ### Classes
 
 ```js
@@ -636,6 +627,6 @@ async function getData() {
 
 > :bulb: **Tip:** Practice each concept by building small apps (like counters, to-do lists, or API fetchers).
 
-> :link: For detailed **String, Array, and Object methods**, see [string-array-object-methods-js.md](./string-array-object-methods-js.md)
+> :link: For detailed **String, Array, and Object methods**, see [javascript-string-array-object.md](./javascript-string-array-object.md)
 
 ---

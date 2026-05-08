@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./Assests/banner.png" alt="cheat-docs banner" width="100%" hight="100px">
+  <img src="./Assets/banner.png" alt="cheat-docs banner" width="100%" hight="100px">
 </p>
 
 <h1 align="center">📚 Cheat-docs ✨</h1>
