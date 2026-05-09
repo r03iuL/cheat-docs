@@ -24,6 +24,7 @@
 - [3. The Box Model](#3-the-box-model)
   - [Content, Padding, Border, Margin](#content-padding-border-margin)
   - [Box-sizing and border-box](#box-sizing-and-border-box)
+  - [Min/Max Width and Height](#minmax-width-and-height)
   - [Display Types](#display-types)
 - [4. Typography](#4-typography)
   - [Font Families and Fallbacks](#font-families-and-fallbacks)
@@ -341,6 +342,60 @@ Each element has content, padding, border, and margin areas.
 ```
 
 > :bulb: This makes width calculations more predictable.
+
+---
+
+### Min/Max Width and Height
+
+Control element size constraints.
+
+```css
+/* Prevent element from getting too small */
+.card {
+  min-height: 200px;
+}
+
+/* Limit maximum size */
+.image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive image pattern */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Flex item sizing */
+.item {
+  min-width: 0;  /* fix flex overflow bug */
+  flex: 1;
+}
+
+/* Constrain within container */
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Sticky footer pattern */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+footer {
+  margin-top: auto;
+}
+```
+
+> [!NOTE]
+> - `max-width: 100%` + `height: auto` = responsive images
+> - `min-width: 0` in flexbox prevents text overflow
+> - `min-height: 100vh` for sticky layouts
+> - `width: 100%; max-width: Xpx` for centered constrained content
 
 ---
 
