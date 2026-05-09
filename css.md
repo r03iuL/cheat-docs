@@ -11,6 +11,8 @@
 - [1. CSS Basics and Syntax](#1-css-basics-and-syntax)
   - [What is CSS and How It Works](#what-is-css-and-how-it-works)
   - [Selectors, Properties, and Values](#selectors-properties-and-values)
+  - [Combinator Selectors](#combinator-selectors)
+  - [Attribute Selectors](#attribute-selectors)
   - [Inline, Internal, and External CSS](#inline-internal-and-external-css)
   - [Comments and Best Practices](#comments-and-best-practices)
   - [CSS Specificity](#css-specificity)
@@ -119,6 +121,95 @@ h1 {
   background-color: #f0f0f0;
 }
 ```
+
+---
+
+### Combinator Selectors
+
+Combinators combine multiple selectors to target elements based on their relationship.
+
+```css
+/* Descendant (space) - any nested child */
+article p {
+  line-height: 1.6;
+}
+
+/* Child (>) - direct child only */
+div > p {
+  color: blue;
+}
+
+/* Adjacent Sibling (+) - immediately next sibling */
+h2 + p {
+  font-style: italic;
+}
+
+/* General Sibling (~) - all following siblings */
+h2 ~ p {
+  color: gray;
+}
+```
+
+> [!NOTE]
+> - `div p` targets ALL `<p>` inside `<div>` (grandchildren too)
+> - `div > p` targets only DIRECT `<p>` children of `<div>`
+> - `h1 + p` targets `<p>` that immediately follows `<h1>`
+> - `h1 ~ p` targets ALL `<p>` that follow `<h1>`
+
+---
+
+### Attribute Selectors
+
+Target elements based on their attributes.
+
+```css
+/* Presence - has attribute */
+[disabled] {
+  opacity: 0.5;
+}
+
+/* Exact match */
+[type="text"] {
+  border: 1px solid #ccc;
+}
+
+/* Exact (alternative syntax) */
+[class="btn primary"] {
+  /* matches exact value */
+}
+
+/* Starts with value */
+[href^="https"] {
+  color: green;
+}
+
+/* Ends with value */
+[href$=".pdf"] {
+  background: url(pdf-icon.png);
+}
+
+/* Contains substring */
+[class*="btn"] {
+  padding: 8px 16px;
+}
+
+/* Contains word (space-separated) */
+[class~="active"] {
+  font-weight: bold;
+}
+
+/* Starts with (hyphen-separated prefix) */
+[lang|="en"] {
+  /* matches "en", "en-US", "en-GB" */
+}
+```
+
+> [!NOTE]
+> - `[attr^="val"]` - starts with
+> - `[attr$="val"]` - ends with
+> - `[attr*="val"]` - contains substring
+> - `[attr~="val"]` - contains word in space-separated list
+> - `[attr|="val"]` - starts with prefix (for language codes)
 
 ---
 
@@ -594,11 +685,61 @@ button {
 
 ### Transform
 
+Transform elements in 2D space (position, rotation, scale, skew).
+
 ```css
-button:hover {
-  transform: scale(1.1) rotate(5deg);
+/* Translate - move element (x, y) */
+.move-right {
+  transform: translate(50px, 0);       /* right 50px */
+}
+.move-center {
+  transform: translate(-50%, -50%);    /* center in parent */
+}
+
+/* Scale - resize element (1 = 100%) */
+.bigger {
+  transform: scale(1.5);               /* 1.5x size */
+}
+.shrink {
+  transform: scale(0.5);              /* half size */
+}
+.stretch {
+  transform: scaleX(2);               /* double width only */
+}
+
+/* Rotate - rotate element */
+.turn {
+  transform: rotate(45deg);           /* clockwise 45° */
+}
+.turn-back {
+  transform: rotate(-90deg);          /* counter-clockwise */
+}
+
+/* Skew - skew/distort element */
+.slanted {
+  transform: skewX(20deg);            /* skew horizontal */
+}
+.skew-both {
+  transform: skew(10deg, 5deg);       /* skew x and y */
+}
+
+/* Matrix - combine all transforms (a, b, c, d, tx, ty) */
+.manual {
+  transform: matrix(1, 0, 0, 1, 100, 50);
+}
+
+/* Multiple transforms */
+.combo {
+  transform: translate(20px, 10px) rotate(15deg) scale(1.2);
 }
 ```
+
+> [!NOTE]
+> - `translate(100px, 0)` = move right 100px
+> - `scale(2)` = double size, `scale(0.5)` = half size
+> - `rotate(360deg)` = full circle
+> - `skewX(45deg)` = shear 45° horizontally
+> - Combine transforms: `transform: translate() rotate() scale()`
 
 ---
 
